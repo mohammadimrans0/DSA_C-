@@ -1,7 +1,7 @@
 #include <bits/stdc++.h>
 using namespace std;
 
-vector<int> v[1005];
+vector<int> adjList[1005];
 vector<bool> visited(1005, false);
 
 void bfs(int src) {
@@ -15,7 +15,7 @@ void bfs(int src) {
 
     cout << u << endl;
 
-    for (int v : v[u]) {
+    for (int v : adjList[u]) {
       if (visited[v] == false) {
         q.push(v);
         visited[v] = true;
@@ -32,8 +32,8 @@ int main() {
     int a, b;
     cin >> a >> b;
 
-    v[a].push_back(b);
-    v[b].push_back(a);
+    adjList[a].push_back(b);
+    adjList[b].push_back(a);
   }
 
   int src;

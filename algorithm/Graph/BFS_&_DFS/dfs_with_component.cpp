@@ -1,40 +1,6 @@
 #include <bits/stdc++.h>
 using namespace std;
 
-const int N = 1e5 + 5;
-vector<int> v[N];
-vector<bool> visited(N, false);
-
-void dfs(int src) {
-  cout << src << endl;
-  visited[src] = true;
-
-  for (int child : v[src]) {
-    if (visited[child] == false) {
-      dfs(child);
-    }
-  }
-}
-
-int main() {
-  int n, e;
-  cin >> n >> e;
-  while (e--) {
-    int a, b;
-    cin >> a >> b;
-    v[a].push_back(b);
-    v[b].push_back(a);
-  }
-
-  dfs(0);
-
-  return 0;
-}
-
-// alternative
-#include <bits/stdc++.h>
-using namespace std;
-
 // Function to perform DFS and store the component
 void dfs(int v, const vector<vector<int>> &adj, vector<bool> &visited,
          vector<int> &component) {
@@ -69,12 +35,10 @@ int main() {
     if (!visited[i]) {
       vector<int> component;
       dfs(i, adj, visited, component);
-      sort(component.begin(), component.end());
       components.push_back(component);
     }
   }
-
-  // Sort components based on the first element of each component
+  
   sort(components.begin(), components.end());
 
   // Output the results
