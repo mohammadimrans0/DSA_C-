@@ -1,3 +1,8 @@
+/*
+jdi kono node visited take (visited[node] == true]) and oi node tar dfs call o hoye gece (dfs[node] == true) tahole oi directed graph a cycle ace.
+
+*/
+
 #include <bits/stdc++.h>
 using namespace std;
 
@@ -7,21 +12,21 @@ vector<bool> vis(N, false);
 vector<bool> pathVisit(N, false);
 bool ans;
 
-void dfs(int parent) {
-  vis[parent] = true;
-  pathVisit[parent] = true;
+void dfs(int node) {
+  vis[node] = true;
+  pathVisit[node] = true;
 
-  for (int child : adj[parent]) {
+  for (int child : adj[node]) {
     if (pathVisit[child]) {
       ans = true;
     }
 
-    if (vis[child] == false) {
+    if (!vis[child]) {
       dfs(child);
     }
   }
 
-  pathVisit[parent] = false;
+  pathVisit[node] = false;
 }
 
 int main() {

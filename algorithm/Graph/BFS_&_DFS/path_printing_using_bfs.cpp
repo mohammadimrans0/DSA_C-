@@ -17,7 +17,7 @@ void bfs(int src) {
     q.pop();
 
     for (int child : v[par]) {
-      if (vis[child] == false) {
+      if (!vis[child]) {
         q.push(child);
         vis[child] = true;
         level[child] = level[par] + 1;

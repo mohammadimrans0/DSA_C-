@@ -7,15 +7,15 @@ vector<bool> vis(N, false);
 vector<int> parentArray(N, -1);
 bool ans;
 
-void dfs(int parent) {
-  vis[parent] = true;
+void dfs(int node) {
+  vis[node] = true;
   // cout << parent << endl;
-  for (int child : adj[parent]) {
-    if (vis[child] == true && child != parentArray[parent]) {
+  for (int child : adj[node]) {
+    if (vis[child] == true && child != parentArray[node]) {
       ans = true;
     }
-    if (vis[child] == false) {
-      parentArray[child] = parent;
+    if (!vis[child]) {
+      parentArray[child] = node;
       dfs(child);
     }
   }

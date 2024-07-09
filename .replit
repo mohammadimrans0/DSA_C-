@@ -1,0 +1,8 @@
+modules = ["cpp-clang14"]
+run = "g++ -o main main.cpp && ./main"
+
+[nix]
+channel = "stable-24_05"
+
+[deployment]
+run = "g++ -o main *.cpp && ./main < input.txt"
