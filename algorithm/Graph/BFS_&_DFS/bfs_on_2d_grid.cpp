@@ -1,59 +1,61 @@
 #include <bits/stdc++.h>
 using namespace std;
 
-bool vis[20][20];
-int dis[20][20];
-vector<pair<int, int>> d = {{0, 1}, {0, -1}, {-1, 0}, {1, 0}};
-
-int n, m;
-char a[20][20];
-
-bool valid(int i, int j) {
-  if (i < 0 || i >= n || j < 0 || j >= m)
-    return false;
-  return true;
-}
-
-void bfs(int si, int sj) {
+void bfs(vector<vector<int>> &grid, int i, int j) {
+  int rows = grid.size();
+  int cols = grid[0].size();
   queue<pair<int, int>> q;
-  q.push({si, sj});
-  vis[si][sj] = true;
-  dis[si][sj] = 0;
+
+  // Directions for moving in the grid
+  vector<pair<int, int>> directions = {{0, 1}, {0, -1}, {1, 0}, {-1, 0}};
+
+  // Mark the starting cell as visited by setting it to 0 and add it to the
+  // queue
+  grid[i][j] = 0;
+  q.push({i, j});
 
   while (!q.empty()) {
-    pair<int, int> par = q.front();
-    int a = par.first, b = par.second;
+    auto cell = q.front();
     q.pop();
+    int ci = cell.first;
+    int cj = cell.second;
 
-    for (int i = 0; i < 4; i++) {
-      int ci = a + d[i].first;
-      int cj = b + d[i].second;
-      if (valid(ci, cj) == true && vis[ci][cj] == false) {
-        q.push({ci, cj});
-        vis[ci][cj] = true;
-        dis[ci][cj] = dis[a][b] + 1;
+    // Print the current cell coordinates
+    cout << ci << " " << cj << endl;
+
+    // Explore all four possible directions
+    for (const auto &dir : directions) {
+      int ni = ci + dir.first;
+      int nj = cj + dir.second;
+
+      // Check for out-of-bounds or already visited cells
+      if (ni >= 0 && ni < rows && nj >= 0 && nj < cols && grid[ni][nj] == 1) {
+        // Mark the new cell as visited
+        grid[ni][nj] = 0;
+        q.push({ni, nj});
       }
     }
   }
 }
 
 int main() {
+  int n, m;
   cin >> n >> m;
-  for (int i = 0; i < n; i++) {
-    for (int j = 0; j < m; j++) {
-      cin >> a[i][j];
+
+  vector<vector<int>> grid(n, vector<int>(m));
+
+  for (int i = 0; i < n; ++i) {
+    for (int j = 0; j < m; ++j) {
+      cin >> grid[i][j];
     }
   }
 
-  int si, sj;
-  cin >> si >> sj;
+  // Starting point for the BFS
+  int i = 0;
+  int j = 0;
 
-  memset(vis, false, sizeof(vis));
-  memset(dis, -1, sizeof(dis));
-
-  bfs(si, sj);
-
-  cout << dis[2][3];
+  // Perform BFS starting from the specified cell
+  bfs(grid, i, j);
 
   return 0;
 }

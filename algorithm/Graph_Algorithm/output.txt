@@ -1,0 +1,3 @@
+Bridges in the graph are:
+3 - 4
+1 - 3
