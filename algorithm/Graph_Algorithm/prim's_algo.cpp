@@ -1,7 +1,9 @@
 /*
-prim's algorithem is used to find the minimum spanning tree of a graph.
+prim's algorithm is used to find the minimum spanning tree of a graph.
 
-MST stands for Minimum Spanning Tree. A spanning tree of a graph is a subgraph that includes all the vertices of the original graph with the minimum number of edges required to connect all the vertices without any cycles. The "minimum" in Minimum Spanning Tree refers to the sum of the weights of the edges in the tree being as small as possible.
+MST stands for Minimum Spanning Tree. A spanning tree of a graph is a subgraph that includes all the vertices of the original graph with the minimum number of edges required to connect all the vertices without any cycles.
+
+The "minimum" in Minimum Spanning Tree refers to the sum of the weights of the edges in the tree being as small as possible.
 */
 
 #include <bits/stdc++.h>
