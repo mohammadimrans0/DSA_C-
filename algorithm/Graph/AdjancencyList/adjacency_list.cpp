@@ -7,10 +7,6 @@ int main(){
 
     vector<vector<int>> adjList(n);
 
-    for (int i = 0; i < n; i++) {
-      adjList[i].push_back(i);
-    }
-
     for (int i = 0; i < e; i++) {
       int u, v;
       cin >> u >> v;
@@ -21,8 +17,8 @@ int main(){
 
     for (int i = 0; i < n; i++) {
       cout << "vertex " << i << ":";
-      for (int j = 0; j < adjList[i].size(); j++) {
-        cout << " " << adjList[i][j];
+      for (int neighbor : adjList[i]) {
+        cout << " " << neighbor;
       }
       cout << endl;
     }

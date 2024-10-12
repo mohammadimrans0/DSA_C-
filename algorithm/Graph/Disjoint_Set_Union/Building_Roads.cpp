@@ -2,15 +2,13 @@
 using namespace std;
 
 class UnionFind {
-private:
-  vector<int> parent, rank;
 public:
   // constructor
   UnionFind(int n) {
-    parent.resize(n);
-    rank.resize(n, 0);
+    parent.resize(n + 1);
+    rank.resize(n + 1, 0);
 
-    for (int i = 0; i < n; i++) {
+    for (int i = 1; i <= n; i++) {
       parent[i] = i;
     }
   }
@@ -39,6 +37,9 @@ public:
       }
     }
   }
+
+private:
+  vector<int> parent, rank;
 };
 
 int main(){
@@ -47,23 +48,31 @@ int main(){
 
     UnionFind unionFind(n);
 
-    bool cycle = false;
-
     while(e--){
         int u, v;
         cin >> u >> v;
 
-        if(unionFind.find(u) == unionFind.find(v)){
-            cycle = true;
-        }else{
-          unionFind.unionSets(u, v);
+        int leaderA = unionFind.find(u);
+        int leaderB = unionFind.find(v);
+
+        if(leaderA != leaderB){
+            unionFind.unionSets(u, v);
         }
     }
 
-    if(cycle){
-        cout << "Cycle Found";
-    }else{
-        cout << "Cycle Not Found";
+    vector<int> leader;
+    for (int i = 1; i <= n; i++){
+        leader.push_back(unionFind.find(i)); 
+    }
+
+    sort(leader.begin(), leader.end());
+    leader.erase(unique(leader.begin(), leader.end()), leader.end());
+
+    cout << leader.size() - 1 << endl;
+
+    for (int i = 0; i < leader.size() - 1; i++)
+    {
+        cout << leader[i] << " " << leader[i+1] << endl;
     }
 
     return 0;

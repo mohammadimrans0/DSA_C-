@@ -6,9 +6,9 @@ int main(){
     getline(cin, s);
 
     stringstream ss(s);
-
     string word;
     int cnt = 0;
+    
     while (ss >> word)
     {
         cnt++;

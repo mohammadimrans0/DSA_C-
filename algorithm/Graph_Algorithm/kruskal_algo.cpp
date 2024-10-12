@@ -61,7 +61,7 @@ public:
         rank[root_u]++;
       }
     }
-  }
+   }
 
 private:
   vector<int> parent, rank;

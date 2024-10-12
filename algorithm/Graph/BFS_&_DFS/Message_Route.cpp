@@ -31,32 +31,32 @@ void bfs(int s) {
 int main() {
   int n, e;
   cin >> n >> e;
-
   while (e--) {
-    int a, b;
-    cin >> a >> b;
+    int u, v;
+    cin >> u >> v;
 
-    adjList[a].push_back(b);
-    adjList[b].push_back(a);
+    adjList[u].push_back(v);
+    adjList[v].push_back(u);
   }
 
-  int src, des;
-  cin >> src >> des;
+  bfs(1);
 
-  bfs(src);
-
-  int x = des;
-  vector<int> path;
-  while (x != -1)
-  {
+  if (dis[n] == -1) {
+    cout << "IMPOSSIBLE" << endl;
+  } else {
+    int x = n;
+    vector<int> path;
+    while (x != -1) {
       path.push_back(x);
       x = par[x];
-  }
+    }
 
-  reverse(path.begin(), path.end());
+    reverse(path.begin(), path.end());
 
-  for(int val:path){
+    cout << path.size() << endl;
+    for (int val : path) {
       cout << val << " ";
+    }
   }
 
   return 0;
